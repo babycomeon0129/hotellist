@@ -43,15 +43,7 @@ data.onload = () => {
 
     const pageCount = html => {
         let count;
-
-        if(html%10 ===0){
-            count = parseInt(html / 10) ;
-
-        }else{
-            count = parseInt(html / 10) + 1;
-        }
-
-       // const count = parseInt(html / 10) + 1;
+        html%10 ===0 ? count = parseInt(html / 10):count = parseInt(html / 10) + 1;
 
         let arr = [];
         for (let i = 1; i <= count; i++) {
@@ -134,15 +126,12 @@ prev.addEventListener("click", () => {
 
     }
 
-        let html;
-                if (!SELECT_ZONE_FINA) {
-                    html = dataTotal;
-                } else {
-                    html = dataTotal
-                        .filter(data => data.Zone === SELECT_ZONE_FINA);
-                }
+     let html;
 
-                hotelList(html.slice(offset, offset + PAGE_SIZE)
+     !SELECT_ZONE_FINA ?  html = dataTotal:html = dataTotal
+     .filter(data => data.Zone === SELECT_ZONE_FINA);
+              
+       hotelList(html.slice(offset, offset + PAGE_SIZE)
                     .map(data => darea3Data(data)).join(''));
         console.log(offset+"頁");
 
@@ -167,12 +156,9 @@ next.addEventListener("click", () => {
     console.log(offset)
 
     let html;
-    if (!SELECT_ZONE_FINA) {
-        html = dataTotal;
-    } else {
-        html = dataTotal
-            .filter(data => data.Zone === SELECT_ZONE_FINA);
-    }
+
+    !SELECT_ZONE_FINA?html = dataTotal:html = dataTotal
+    .filter(data => data.Zone === SELECT_ZONE_FINA);
 
     hotelList(html.slice(offset, offset + PAGE_SIZE)
         .map(data => darea3Data(data)).join(''));
